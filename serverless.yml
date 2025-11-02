@@ -1,0 +1,22 @@
+service: calculadora-serverless
+
+provider:
+  name: aws
+  runtime: python3.12
+  stage: dev
+  region: us-east-1
+  iam:
+    role:
+      statements: []  
+
+functions:
+  operaciones:
+    handler: handler.operaciones
+    events:
+      - http:
+          path: calcular
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
